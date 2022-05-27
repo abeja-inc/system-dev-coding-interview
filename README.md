@@ -1,19 +1,4 @@
-# Technical Interview Exercises
+# ABEJA, inc. - Technical Interview Exercises for System Development team
 
-これは、[株式会社 ABEJA](https://abejainc.com/ja/) の開発者採用面談で利用するコーディングテストの演習問題のひとつです。
+このリポジトリは、[株式会社 ABEJA](https://abejainc.com/ja/) の開発者採用面談で利用するコーディングテストの演習問題集です。
 
-## 制限事項
-
-以下の制限事項を守ってください。
-
-1. Go 1.16 以降をお使いください
-2. Go の標準ライブラリ以外のパッケージ/モジュールを利用しないでください（テストは除く）
-
-## 問題 1
-TBD
-## 問題 2
-TBD
-
-## テスト
-
-TBD

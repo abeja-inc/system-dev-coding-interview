@@ -1,4 +1,4 @@
-# Technical Interview Exercises
+# Technical Interview Exercises - Python FastAPI sample
 
 これは、[株式会社 ABEJA](https://abejainc.com/ja/) の開発者採用面談で利用するコーディングテストの演習問題のひとつです。
 
@@ -20,6 +20,15 @@
 
 ## アプリケーションの実行
 
+以下の手順で環境構築を行います。
+
+```bash
+$ pip install poetry
+$ git clone git@github.com:abeja-inc/system-dev-coding-interview.git
+$ cd system-dev-coding-interview/exercises/01-fastapi-sample
+$ poetry install
+```
+
 以下のコマンドで、アプリケーションをデバッグ実行できます。
 ```bash
 $ make dev
@@ -31,10 +40,15 @@ $ make test
 ```
 
 ## 問題 1
-TBD
+APIにユーザ認証機能を実装してください。認証実装後は `X-API-TOKEN` をリクエストヘッダに入れる事でユーザ認証を行う事とします。ただし、ユーザー作成エンドポイント (`POST /users`) は無認証で受け付ける事とします。`X-API-TOKEN` はユーザー作成時に発行し、レスポンスに含めます。
+また、変更に伴うテストケースの修正・追加を行ってください。
+
 ## 問題 2
-TBD
+自分が所有している `item` を取得するエンドポイントを追加してください。エンドポイントは `GET /me/items` とします。
+また、必要なテストケースの追加を行ってください。
 
-## テスト
+## 問題 3
+ユーザの削除を行うエンドポイントを追加してください。ユーザの削除は、`is_active` を `False` にする事で行います。
+その際、削除対象のユーザが所有する `item` は、有効なユーザかつ `id` が最も小さなユーザの所有権を移す事とします。
+また、必要なテストケースの追加を行ってください。
 
-TBD

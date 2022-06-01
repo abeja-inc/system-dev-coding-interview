@@ -10,6 +10,28 @@
 2. ライブラリの追加は行わないでください。
 
 ## アプリケーションについて
+
+このアプリケーションは、ユーザ毎の ToDo タスクを管理する API サンプルです。アプリケーションにはユーザ管理機能が含まれています。
+
+タスクとユーザはそれぞれ以下の情報を持ちます。
+- タスク: タイトル、説明、担当ユーザ
+- ユーザ: メールアドレス、パスワード、有効(`active`)かどうか
+
+コード内では、タスクは `Items` 、ユーザは `User` として表記されます。
+
+API のエンドポイントと提供する機能は以下です。
+
+| Method | Path                     | 機能                             |
+|--------|--------------------------|----------------------------------|
+| `POST` | `/users/`                | ユーザを作成する。                  |
+| `GET`  | `/users/`                | ユーザ一覧を取得する。               |
+| `GET`  | `/users/:user_id`        | ユーザ情報を取得する。               |
+| `POST` | `/users/:user_id/items/` | あるユーザを担当としてタスクを作成する。|
+| `GET`  | `/items/`                | タスク一覧を取得する。               |
+| `GET`  | `/health-check"`         | ヘルスチェック用エンドポイント        |
+
+
+### 技術スタック
 - 本アプリケーションは [FastAPI](https://fastapi.tiangolo.com/) を利用した Web API です。
 - 本アプリケーションは [FastAPI の SQL (Relational) Databases サンプル](https://fastapi.tiangolo.com/tutorial/sql-databases/)をベースにしています。テストは [Testing a Database](https://fastapi.tiangolo.com/advanced/testing-database/) をベースにしています。
 - 以下のツールを利用しています。

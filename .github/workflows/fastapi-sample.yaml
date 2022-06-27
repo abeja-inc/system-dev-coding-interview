@@ -36,6 +36,5 @@ jobs:
         working-directory: ${{ env.WORKING_DIRECTORY }}
 
       - name: Run test
-        run: poetry run pytest
-        id: make test
+        run: make test
         working-directory: ${{ env.WORKING_DIRECTORY }}

@@ -1,0 +1,40 @@
+name: Continuous Integration for fastapi-sample
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/fastapi-sample.yaml
+      - 'exercises/01-fastapi-sample/**'
+    types: [opened, synchronize, closed]
+
+env:
+  WORKING_DIRECTORY: ./exercises/01-fastapi-sample
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry install
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+      - name: Run lint
+        run: make lint
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+      - name: Run test
+        run: make test
+        working-directory: ${{ env.WORKING_DIRECTORY }}

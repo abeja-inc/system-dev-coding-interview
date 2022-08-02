@@ -31,10 +31,10 @@ jobs:
           poetry install
         working-directory: ${{ env.WORKING_DIRECTORY }}
 
-      - name: Run lint
-        run: make lint
-        working-directory: ${{ env.WORKING_DIRECTORY }}
-
       - name: Run test
         run: make test
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+      - name: Run lint
+        run: make lint
         working-directory: ${{ env.WORKING_DIRECTORY }}

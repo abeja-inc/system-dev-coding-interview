@@ -9,6 +9,7 @@ python = "^3.8"
 fastapi = "^0.75.1"
 uvicorn = {extras = ["standard"], version = "^0.17.6"}
 SQLAlchemy = "^1.4.35"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
 
 [tool.poetry.dev-dependencies]
 pysen = {version = "0.10.2", extras = ["lint"]}

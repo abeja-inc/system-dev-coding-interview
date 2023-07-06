@@ -8,8 +8,8 @@ authors = ["ABEJA Inc. <dev@abejainc.com>"]
 python = "^3.8"
 fastapi = "^0.75.1"
 uvicorn = {extras = ["standard"], version = "^0.17.6"}
-SQLAlchemy = "^1.4.35"
 python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+sqlalchemy = "^2.0.18"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.1.2"

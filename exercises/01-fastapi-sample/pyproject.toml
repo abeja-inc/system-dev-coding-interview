@@ -11,25 +11,27 @@ uvicorn = {extras = ["standard"], version = "^0.17.6"}
 SQLAlchemy = "^1.4.35"
 python-jose = {extras = ["cryptography"], version = "^3.3.0"}
 
-[tool.poetry.dev-dependencies]
-pysen = {version = "0.10.2", extras = ["lint"]}
+[tool.poetry.group.dev.dependencies]
 pytest = "^7.1.2"
 requests = "^2.27.1"
+ruff = "^0.0.277"
+black = "^23.3.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.pysen]
-version = "0.10"
+[tool.ruff]
+select = [
+    "E", # pycodestyle errors
+    "W", # pycodestyle warnings
+    "F", # pyflakes
+    "B", # flake8-bugbear
+    "I", # isort
+]
 
-[tool.pysen.lint]
-enable_black = true
-enable_flake8 = true
-enable_isort = true
-enable_mypy = false
-mypy_preset = "strict"
-line_length = 88
-py_version = "py38"
-[[tool.pysen.lint.mypy_targets]]
-  paths = ["."]
+ignore = [
+    "E501", # line too long, handled by black
+    "B008", # do not perform function calls in argument defaults
+]
+target-version = "py38"

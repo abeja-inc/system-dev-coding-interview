@@ -44,8 +44,9 @@ API のエンドポイントと提供する機能は以下です。
 
 以下の手順で環境構築を行います。
 
+Poetry 1.5.1 を[インストールします](https://python-poetry.org/docs/#installation)。
+
 ```bash
-$ pip install poetry
 $ git clone git@github.com:abeja-inc/system-dev-coding-interview.git
 $ cd system-dev-coding-interview/exercises/01-fastapi-sample
 $ poetry install

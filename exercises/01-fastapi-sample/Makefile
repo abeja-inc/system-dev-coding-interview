@@ -17,10 +17,13 @@ ruff-fix:
 black:
 	poetry run black .
 
-lint: black-check ruff-check
+lint: black-check ruff-check mypy
 
 black-check:
 	poetry run black --check .
 
 ruff-check:
 	poetry run ruff check .
+
+mypy:
+	poetry run mypy . --config-file ./pyproject.toml

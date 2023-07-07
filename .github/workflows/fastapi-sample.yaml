@@ -32,7 +32,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          poetry install
+          poetry install --no-root
         working-directory: ${{ env.WORKING_DIRECTORY }}
 
       - name: Run test
@@ -58,10 +58,40 @@ jobs:
 
       - name: Install dependencies
         run: |
-          poetry install
+          poetry install --no-root
         working-directory: ${{ env.WORKING_DIRECTORY }}
 
-      - name: Run lint
-        run: make lint
+      - name: Run ruff check
+        run: make ruff-check
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+      - name: Run black check
+        run: make black-check
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+  type_check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
+
+      - name: Install poetry
+        run: |
+          curl -sSL https://install.python-poetry.org/ | python3 - --version 1.5.1
+          ln -s $POETRY_HOME/bin/poetry /usr/local/bin/poetry
+
+      - name: Install dependencies
+        run: |
+          poetry install --no-root
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+      - name: Run mypy
+        run: make mypy
         working-directory: ${{ env.WORKING_DIRECTORY }}
 

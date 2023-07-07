@@ -3,6 +3,10 @@ from typing import List, Optional
 from pydantic import BaseModel
 
 
+class HealthCheck(BaseModel):
+    status: str
+
+
 class ItemBase(BaseModel):
     title: str
     description: Optional[str] = None

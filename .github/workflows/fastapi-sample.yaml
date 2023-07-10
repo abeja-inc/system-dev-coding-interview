@@ -29,6 +29,7 @@ jobs:
         run: |
           curl -sSL https://install.python-poetry.org/ | python3 - --version 1.5.1
           ln -s $POETRY_HOME/bin/poetry /usr/local/bin/poetry
+          poetry config virtualenvs.create false
 
       - name: Install dependencies
         run: |
@@ -39,7 +40,7 @@ jobs:
         run: make test
         working-directory: ${{ env.WORKING_DIRECTORY }}
 
-  lint:
+  code_lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -55,6 +56,7 @@ jobs:
         run: |
           curl -sSL https://install.python-poetry.org/ | python3 - --version 1.5.1
           ln -s $POETRY_HOME/bin/poetry /usr/local/bin/poetry
+          poetry config virtualenvs.create false
 
       - name: Install dependencies
         run: |
@@ -85,6 +87,7 @@ jobs:
         run: |
           curl -sSL https://install.python-poetry.org/ | python3 - --version 1.5.1
           ln -s $POETRY_HOME/bin/poetry /usr/local/bin/poetry
+          poetry config virtualenvs.create false
 
       - name: Install dependencies
         run: |
@@ -95,3 +98,24 @@ jobs:
         run: make mypy
         working-directory: ${{ env.WORKING_DIRECTORY }}
 
+  docker_lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Check for changes in Dockerfile
+        uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            changed:
+              - 'exercises/01-fastapi-sample/Dockerfile'
+
+      - name: Lint Dockerfile
+        if: steps.filter.outputs.changed == 'true'
+        uses: hadolint/hadolint-action@master
+        with:
+          dockerfile: 'exercises/01-fastapi-sample/Dockerfile'
+          ignore: 'DL3008' # Pin versions in apt get install

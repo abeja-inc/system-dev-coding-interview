@@ -57,7 +57,25 @@ $ poetry install
 $ make dev
 ```
 
-以下のコマンドで、テストを実行できます。
+## テストの実行
+
+コンテナ環境でのテスト実行を推奨します。以下のコマンドでDockerイメージをビルドします。
+```bash
+$ make docker-build
+```
+
+デフォルトでは Python 3.8 のイメージを作成します。別のバージョンを利用したい場合、環境変数 `PYTHON_VERSION` に任意のバージョンを指定してください。以下は Python 3.11 の例です。
+```bash
+$ PYTHON_VERSION=3.11 make docker-build
+```
+
+
+イメージのビルド後、以下のコマンドでテストを実行します。
+```bash
+$ make docker-run
+```
+
+コンテナ環境を利用しない場合は以下のコマンドでテストを実行します。
 ```bash
 $ make test
 ```

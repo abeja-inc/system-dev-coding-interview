@@ -2,7 +2,7 @@
 
 PYTHON_VERSION?=3.8
 IMAGE_NAME=abeja-coding-interview-sql-app:test
-VOLUME=./sql_app:/app/sql_app
+VOLUME=$(PWD)/sql_app:/app/sql_app
 
 dev:
 	poetry run uvicorn sql_app.main:app --reload

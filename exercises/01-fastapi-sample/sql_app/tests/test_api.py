@@ -1,8 +1,9 @@
+import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy.orm import Session
 
 
-def test_create_user(test_db: Session, client: TestClient) -> None:
+@pytest.mark.usefixtures("test_db")
+def test_create_user(client: TestClient) -> None:
     response = client.post(
         "/users/",
         json={"email": "deadpool@example.com", "password": "chimichangas4life"},

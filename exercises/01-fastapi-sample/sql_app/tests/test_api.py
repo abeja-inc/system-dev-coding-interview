@@ -5,7 +5,7 @@ from fastapi.testclient import TestClient
 @pytest.mark.usefixtures("test_db")
 def test_create_user(client: TestClient) -> None:
     response = client.post(
-        "/users/",
+        "/users",
         json={"email": "deadpool@example.com", "password": "chimichangas4life"},
     )
     assert response.status_code == 200, response.text

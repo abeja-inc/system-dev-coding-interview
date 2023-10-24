@@ -65,3 +65,17 @@ def read_items(
 ) -> List[models.Item]:
     items = crud.get_items(db, skip=skip, limit=limit)
     return items
+
+
+@app.patch("/users/{user_id}/items/{item_id}", response_model=schemas.Item)
+def update_item_for_user(
+    user_id: int, item_id: int, item: schemas.ItemUpdate, db: Session = db_session
+) -> models.Item:
+    db_item = crud.get_item(
+        db=db,
+        user_id=user_id,
+        item_id=item_id,
+    )
+    if db_item is None:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return crud.update_user_item(db=db, item=item, db_item=db_item)

@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import List, Optional
 
 from pydantic import BaseModel
@@ -16,9 +17,17 @@ class ItemCreate(ItemBase):
     pass
 
 
+class ItemUpdate(BaseModel):
+    title: Optional[str] = None
+    description: Optional[str] = None
+    done: Optional[bool] = None
+
+
 class Item(ItemBase):
     id: int
     owner_id: int
+    created_at: datetime
+    done: bool
 
     class Config:
         orm_mode = True

@@ -1,4 +1,4 @@
-.PHONY: dev run format lint test docker-build docker-run
+.PHONY: dev run format lint test test-user docker-build docker-run
 
 PYTHON_VERSION?=3.8
 IMAGE_NAME=abeja-coding-interview-sql-app:test
@@ -10,8 +10,13 @@ dev:
 run:
 	poetry run uvicorn sql_app.main:app --host 0.0.0.0 --port 8000
 
-test:
+test: test-user test-integration
+
+test-user:
 	poetry run pytest
+
+test-integration:
+	poetry run pytest .integration
 
 format: black ruff-fix
 

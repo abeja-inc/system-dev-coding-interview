@@ -37,7 +37,7 @@ jobs:
         working-directory: ${{ env.WORKING_DIRECTORY }}
 
       - name: Run test
-        run: make test
+        run: make test-user
         working-directory: ${{ env.WORKING_DIRECTORY }}
 
   code_lint:

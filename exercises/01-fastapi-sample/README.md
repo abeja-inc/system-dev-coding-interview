@@ -44,8 +44,12 @@ API のエンドポイントと提供する機能は以下です。
 
 以下の手順で環境構築を行います。
 
+- `poetry` はバージョン 2.1.3 で動作確認しています
+
 ```bash
 $ pip install poetry
+$ poetry --version
+Poetry (version 2.1.3)
 $ git clone git@github.com:abeja-inc/system-dev-coding-interview.git
 $ cd system-dev-coding-interview/exercises/01-fastapi-sample
 $ poetry install

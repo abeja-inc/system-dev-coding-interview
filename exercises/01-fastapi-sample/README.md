@@ -47,7 +47,7 @@ API のエンドポイントと提供する機能は以下です。
 
 以下の手順で環境構築を行います。
 
-Poetry 1.5.1 を[インストールします](https://python-poetry.org/docs/#installation)。
+Poetry 2.1.3 を[インストールします](https://python-poetry.org/docs/#installation)。
 
 ```bash
 $ git clone git@github.com:abeja-inc/system-dev-coding-interview.git

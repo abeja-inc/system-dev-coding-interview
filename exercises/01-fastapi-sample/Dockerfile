@@ -2,9 +2,6 @@ ARG PYTHON_VERSION="3.8"
 
 FROM python:${PYTHON_VERSION}-slim
 
-ARG POETRY_HOME="/opt/poetry"
-ARG POETRY_VERSION="1.5.1"
-
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN apt-get update && \
@@ -12,14 +9,12 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN curl -sSL https://install.python-poetry.org/ | python3 - --version ${POETRY_VERSION} && \
-    ln -s ${POETRY_HOME}/bin/poetry /usr/local/bin/poetry && \
-    poetry config virtualenvs.create false
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 WORKDIR /app
 
-COPY Makefile pyproject.toml poetry.lock ./
+COPY Makefile pyproject.toml uv.lock .integration ./
 
-RUN poetry install --no-root
+RUN uv sync --locked
 
 CMD ["make", "test"]

@@ -1,11 +1,12 @@
 from typing import List, Optional
 
-from passlib.context import CryptContext
+from pwdlib import PasswordHash
+from pwdlib.hashers.bcrypt import BcryptHasher
 from sqlalchemy.orm import Session
 
 from . import models, schemas
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = PasswordHash([BcryptHasher()])
 
 
 def get_user(db: Session, user_id: int) -> Optional[models.User]:

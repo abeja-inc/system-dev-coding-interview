@@ -5,37 +5,37 @@ IMAGE_NAME=abeja-coding-interview-sql-app:test
 VOLUME=$(PWD)/sql_app:/app/sql_app
 
 dev:
-	poetry run uvicorn sql_app.main:app --reload
+	uv run uvicorn sql_app.main:app --reload
 
 run:
-	poetry run uvicorn sql_app.main:app --host 0.0.0.0 --port 8000
+	uv run uvicorn sql_app.main:app --host 0.0.0.0 --port 8000
 
 test: test-user test-integration
 
 test-user:
-	poetry run pytest
+	uv run pytest
 
 test-integration:
-	poetry run pytest .integration
+	uv run pytest .integration
 
 format: black ruff-fix
 
 ruff-fix:
-	poetry run ruff --fix .
+	uv run ruff --fix .
 
 black:
-	poetry run black .
+	uv run black .
 
 lint: black-check ruff-check mypy
 
 black-check:
-	poetry run black --check .
+	uv run black --check .
 
 ruff-check:
-	poetry run ruff check .
+	uv run ruff check .
 
 mypy:
-	poetry run mypy . --config-file ./pyproject.toml
+	uv run mypy . --config-file ./pyproject.toml
 
 docker-build:
 	docker image build --no-cache --tag ${IMAGE_NAME} . --build-arg PYTHON_VERSION=${PYTHON_VERSION}

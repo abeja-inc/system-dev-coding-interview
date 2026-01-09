@@ -10,7 +10,6 @@ on:
 
 env:
   WORKING_DIRECTORY: ./exercises/01-fastapi-sample
-  POETRY_HOME: /opt/poetry
 
 jobs:
   test:
@@ -25,15 +24,12 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Install poetry
-        run: |
-          curl -sSL https://install.python-poetry.org/ | python3 - --version 1.5.1
-          ln -s $POETRY_HOME/bin/poetry /usr/local/bin/poetry
-          poetry config virtualenvs.create false
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
 
       - name: Install dependencies
         run: |
-          poetry install --no-root
+          uv sync --locked
         working-directory: ${{ env.WORKING_DIRECTORY }}
 
       - name: Run test
@@ -52,15 +48,12 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Install poetry
-        run: |
-          curl -sSL https://install.python-poetry.org/ | python3 - --version 1.5.1
-          ln -s $POETRY_HOME/bin/poetry /usr/local/bin/poetry
-          poetry config virtualenvs.create false
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
 
       - name: Install dependencies
         run: |
-          poetry install --no-root
+          uv sync --locked
         working-directory: ${{ env.WORKING_DIRECTORY }}
 
       - name: Run ruff check
@@ -83,15 +76,12 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Install poetry
-        run: |
-          curl -sSL https://install.python-poetry.org/ | python3 - --version 1.5.1
-          ln -s $POETRY_HOME/bin/poetry /usr/local/bin/poetry
-          poetry config virtualenvs.create false
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
 
       - name: Install dependencies
         run: |
-          poetry install --no-root
+          uv sync --locked
         working-directory: ${{ env.WORKING_DIRECTORY }}
 
       - name: Run mypy

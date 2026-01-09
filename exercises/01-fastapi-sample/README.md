@@ -38,7 +38,7 @@ API のエンドポイントと提供する機能は以下です。
 - 本アプリケーションは [FastAPI](https://fastapi.tiangolo.com/) を利用した Web API です。
 - 本アプリケーションは [FastAPI の SQL (Relational) Databases サンプル](https://fastapi.tiangolo.com/tutorial/sql-databases/)をベースにしています。テストは [Testing a Database](https://fastapi.tiangolo.com/advanced/testing-database/) をベースにしています。
 - 以下のツールを利用しています。
-  - パッケージ管理ツール: [Poetry](https://python-poetry.org/)
+  - パッケージ管理ツール: [uv](https://docs.astral.sh/uv/)
   - テストフレームワーク: [pytest](https://docs.pytest.org/)
   - Web アプリケーションフレームワーク: [FastAPI](https://fastapi.tiangolo.com/)
   - データベース: [SQLite3](https://www.sqlite.org/index.html)
@@ -47,12 +47,12 @@ API のエンドポイントと提供する機能は以下です。
 
 以下の手順で環境構築を行います。
 
-Poetry 2.1.3 を[インストールします](https://python-poetry.org/docs/#installation)。
+uv を[インストールします](https://docs.astral.sh/uv/getting-started/installation/)。
 
 ```bash
 $ git clone git@github.com:abeja-inc/system-dev-coding-interview.git
 $ cd system-dev-coding-interview/exercises/01-fastapi-sample
-$ poetry install
+$ uv sync
 ```
 
 以下のコマンドで、アプリケーションをデバッグ実行できます。

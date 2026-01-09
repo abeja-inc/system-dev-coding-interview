@@ -1,6 +1,6 @@
 .PHONY: dev run format lint test test-user docker-build docker-run
 
-PYTHON_VERSION?=3.8
+PYTHON_VERSION?=3.13
 IMAGE_NAME=abeja-coding-interview-sql-app:test
 VOLUME=$(PWD)/sql_app:/app/sql_app
 
@@ -18,20 +18,20 @@ test-user:
 test-integration:
 	uv run pytest .integration
 
-format: black ruff-fix
+format: format-fix lint-fix
 
-ruff-fix:
-	uv run ruff --fix .
+lint-fix:
+	uv run ruff check --fix .
 
-black:
-	uv run black .
+format-fix:
+	uv run ruff format .
 
-lint: black-check ruff-check mypy
+lint: format-check lint-check mypy
 
-black-check:
-	uv run black --check .
+format-check:
+	uv run ruff format --check .
 
-ruff-check:
+lint-check:
 	uv run ruff check .
 
 mypy:

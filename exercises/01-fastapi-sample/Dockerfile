@@ -1,4 +1,4 @@
-ARG PYTHON_VERSION="3.8"
+ARG PYTHON_VERSION="3.13"
 
 FROM python:${PYTHON_VERSION}-slim
 
@@ -13,7 +13,8 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 WORKDIR /app
 
-COPY Makefile pyproject.toml uv.lock .integration ./
+COPY Makefile pyproject.toml uv.lock ./
+COPY .integration/ ./.integration/
 
 RUN uv sync --locked
 

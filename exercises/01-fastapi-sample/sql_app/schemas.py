@@ -1,7 +1,7 @@
 from datetime import datetime
-from typing import List, Optional
+from typing import List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class HealthCheck(BaseModel):
@@ -10,7 +10,7 @@ class HealthCheck(BaseModel):
 
 class ItemBase(BaseModel):
     title: str
-    description: Optional[str] = None
+    description: str | None = None
 
 
 class ItemCreate(ItemBase):
@@ -18,9 +18,9 @@ class ItemCreate(ItemBase):
 
 
 class ItemUpdate(BaseModel):
-    title: Optional[str] = None
-    description: Optional[str] = None
-    done: Optional[bool] = None
+    title: str | None = None
+    description: str | None = None
+    done: bool | None = None
 
 
 class Item(ItemBase):
@@ -29,8 +29,7 @@ class Item(ItemBase):
     created_at: datetime
     done: bool
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class UserBase(BaseModel):
@@ -46,5 +45,4 @@ class User(UserBase):
     is_active: bool
     items: List[Item] = []
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)

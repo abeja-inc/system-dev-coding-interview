@@ -118,7 +118,6 @@ def test_happy_path(client: TestClient, db_session: Session) -> None:
             token,
             prepared_item["title"],
             prepared_item["description"],
-            prepared_item["created_at"],
         )
         prepared_item["id"] = item_id
 
@@ -167,4 +166,6 @@ def test_happy_path(client: TestClient, db_session: Session) -> None:
     expected_item1["owner_id"] = user_id3
     expected_item2["owner_id"] = user_id3
     expected_item3["owner_id"] = user_id3
+    expected_item4["owner_id"] = user_id3
+    expected_item5["owner_id"] = user_id3
     assertions.item.get(client, token3, ordered_full_items)

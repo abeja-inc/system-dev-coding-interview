@@ -1,4 +1,6 @@
-.PHONY: dev run format lint test test-user docker-build docker-run
+.PHONY: dev run format lint \
+	test test-unit test-integration \
+	docker-build docker-run docker-run-unit docker-run-integration
 
 PYTHON_VERSION?=3.13
 IMAGE_NAME=abeja-coding-interview-sql-app:test
@@ -10,13 +12,13 @@ dev:
 run:
 	uv run uvicorn sql_app.main:app --host 0.0.0.0 --port 8000
 
-test: test-user test-integration
-
-test-user:
+test-unit:
 	uv run pytest
 
 test-integration:
 	uv run pytest .integration
+
+test: test-unit test-integration
 
 format: format-fix lint-fix
 
@@ -42,3 +44,9 @@ docker-build:
 
 docker-run:
 	docker container run -it -v ${VOLUME} --rm ${IMAGE_NAME}
+
+docker-run-unit:
+	docker container run -it -v ${VOLUME} --rm ${IMAGE_NAME} make test-unit
+
+docker-run-integration:
+	docker container run -it -v ${VOLUME} --rm ${IMAGE_NAME} make test-integration

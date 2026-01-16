@@ -1,2 +1,8 @@
 # Mac
 .DS_Store
+
+*.patch
+*.rej
+*.orig
+
+.vscode

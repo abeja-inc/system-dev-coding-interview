@@ -32,8 +32,13 @@ jobs:
           uv sync --locked
         working-directory: ${{ env.WORKING_DIRECTORY }}
 
-      - name: Run test
-        run: make test-user
+      - name: Run unit test
+        run: make test-unit
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+      - name: Run integration test
+        if: github.head_ref == 'submit'
+        run: make test-integration
         working-directory: ${{ env.WORKING_DIRECTORY }}
 
   code_lint:

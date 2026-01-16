@@ -27,7 +27,6 @@ def post(
         token: token of user
         title: title of item
         description: description of item
-        created_at: created_at of item(format is %Y-%m-%dT%H:%M:%S)
 
     Returns:
         id of created item

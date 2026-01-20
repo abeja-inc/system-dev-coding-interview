@@ -59,11 +59,11 @@ def update_user_item(
     db: Session, item: schemas.ItemUpdate, db_item: models.Item
 ) -> models.Item:
     if item.title is not None:
-        db_item.title = item.title  # type: ignore
+        db_item.title = item.title
     if item.description is not None:
-        db_item.description = item.description  # type: ignore
+        db_item.description = item.description
     if item.done is not None:
-        db_item.done = item.done  # type: ignore
+        db_item.done = item.done
     db.commit()
     db.refresh(db_item)
     return db_item

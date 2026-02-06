@@ -46,8 +46,11 @@ make docker-run
 # archive target files
 
 temp_dir=$(mktemp -d)
-cp -r ../.. "$temp_dir"
+
+# Copy files respecting .gitignore patterns
+rsync -a --exclude-from=../../.gitignore --exclude-from=.gitignore ../.. "$temp_dir"
 echo "copied target files to $temp_dir"
+
 pushd "$temp_dir" > /dev/null
 
 # Remove remote repositories

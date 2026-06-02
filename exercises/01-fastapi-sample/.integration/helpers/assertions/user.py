@@ -61,7 +61,7 @@ def delete(client: TestClient, user_id: str, token: str) -> None:
         f"/users/{user_id}",
         headers={"X-API-TOKEN": token},
     )
-    assert response.status_code == 200, response.text
+    assert response.status_code == 204, response.text
 
     response = client.get(
         f"/users/{user_id}",

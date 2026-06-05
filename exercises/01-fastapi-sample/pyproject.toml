@@ -19,7 +19,7 @@ dependencies = [
 dev = [
     "httpx>=0.28.1",
     "mypy>=1.19.0",
-    "pytest>=9.0.2,<10",
+    "pytest>=9.0.3,<10",
     "ruff>=0.14.9",
 ]
 
